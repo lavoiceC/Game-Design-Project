@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://crev2inf1u6xe"]
+
+[node name="Main Menu" type="Node2D" unique_id=592775360]
+
+[node name="Start" type="Button" parent="." unique_id=1077350797]
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="Exit" type="Button" parent="." unique_id=1481352882]
+offset_right = 8.0
+offset_bottom = 8.0

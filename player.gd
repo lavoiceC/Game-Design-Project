@@ -1,9 +1,13 @@
+## May have received some inspiriation via https://github.com/kidscancode/space_rocks/
 extends Area2D
 ## how fast the ship rotates
-@export var rot_speed:float = 2.6
+var rot_speed:float = 2.6
 ## determines how much thrust the ship has
-@export var thrust: Vector2 = Vector2(500, 0)
-
+var thrust: Vector2 = Vector2(500, 0)
+## Signals to determine actions
+signal explode
+signal shoot
+signal life_lost
 
 
 
