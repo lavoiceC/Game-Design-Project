@@ -4,8 +4,13 @@ extends Area2D
 var rot_speed:float = 2.6
 ## determines how much thrust the ship has
 var thrust: Vector2 = Vector2(500, 0)
-## Signals to determine actions
-signal explode
+# Player Life(s)
+var lives:int = 3
+# Damage against normal enemies & Boss
+var laser_dmg:int = 25
+var dmg_against_boss:int = 10 
+# Signals to determine actions
+signal player_death
 signal shoot
 signal life_lost
 

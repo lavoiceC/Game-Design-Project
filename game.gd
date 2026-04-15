@@ -3,20 +3,23 @@ extends Node2D
 # Settings
 @export var game_over = false
 @export var score = 0
+@export var level = 1
 
-# Player settings
-@export var lives:int = 3
-@export var laser_dmg:int = 25
-@export var dmg_against_boss:int = 10 
-
-# Asteroid settings
+# chip & virus settings
 @export var break_pattern = {'Lg': 'Med', 'Med': "Sm", "Sm": null}
-@export var chip_size = {'Lg': 75, 'Med': 50, "Sm": 25}
-@export var boss_size = {'stage1': 100, 'stage2': 50, 'stage3': 25, 'stage4': 10, 'stage5': null}
+@export var chip_size = {'Lg': 75, 'Med': 50,"Sm": 25}
+@export var virus_size = {'Lg': 150, 'Med': 75, 'Sm': 25}
+@export var enemy_dmg = 1
+
+# Melissa (Boss) settings
+@export var boss_size = {'s1': 100, 's2': 80, 's3': 60, 's4': 40, 's5': 20} 
+@export var boss_pattern = {'s1': 's2', 's2': 's3', 's3': 's4', 's4': 's5', 's5': null}
+@export var boss_damage = {'s1': 3, 's2': 3, 's3': 2, 's4': 1, 's5': 1}
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	pass
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
