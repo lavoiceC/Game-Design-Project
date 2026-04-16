@@ -4,17 +4,17 @@
 [ext_resource type="Texture2D" uid="uid://cctrdpi4mbtcv" path="res://Assets/17_resultado.png" id="2_i3pqv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hqtel"]
-radius = 2.0
+radius = 3.8284273
 
 [node name="Player" type="Area2D" unique_id=368318907]
 rotation = 0.7853982
 script = ExtResource("1_onrkg")
-metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1305935437]
 position = Vector2(-1, 0)
+skew = -0.03141593
 shape = SubResource("CircleShape2D_hqtel")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=950772293]
-scale = Vector2(0.05, 0.05)
+scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_i3pqv")
