@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://ckudr8chj1kgo" path="res://player.tscn" id="1_80nbo"]
 [ext_resource type="Script" uid="uid://dceffjs8rpmpn" path="res://game.gd" id="1_e2o6t"]
 [ext_resource type="Texture2D" uid="uid://biw6f41beuhjv" path="res://Assets/background.jpg" id="2_fc0e3"]
-[ext_resource type="PackedScene" uid="uid://bjf5naar08evt" path="res://chip.tscn" id="3_feb5d"]
 
 [node name="Game" type="Node2D" unique_id=340248100]
 script = ExtResource("1_e2o6t")
@@ -15,8 +14,3 @@ texture = ExtResource("2_fc0e3")
 metadata/_edit_lock_ = true
 
 [node name="Player" parent="." unique_id=368318907 instance=ExtResource("1_80nbo")]
-scale = Vector2(5, 5)
-
-[node name="Chip" parent="." unique_id=90414676 instance=ExtResource("3_feb5d")]
-position = Vector2(0, 1.1920929e-07)
-scale = Vector2(10, 10)

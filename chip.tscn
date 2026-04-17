@@ -1,21 +1,20 @@
 [gd_scene format=3 uid="uid://bjf5naar08evt"]
 
-[ext_resource type="Texture2D" uid="uid://dvcvmd70bwvmi" path="res://Assets/Icon 32X32/Icon - Base HardLine.png" id="1_ri5qt"]
+[ext_resource type="Texture2D" uid="uid://dxi336dp6w1po" path="res://Assets/separated_sprites/LgBlack.png" id="2_3la36"]
 [ext_resource type="Script" uid="uid://bndfud3scooac" path="res://chip.gd" id="2_ojlvc"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ojlvc"]
-radius = 2.0
-height = 4.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6g28p"]
+size = Vector2(3, 4)
 
 [node name="Chip" type="Area2D" unique_id=90414676]
 script = ExtResource("2_ojlvc")
+metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1237618047]
-rotation = -0.49741885
-shape = SubResource("CapsuleShape2D_ojlvc")
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_6g28p")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2100937944]
-scale = Vector2(0.15, 0.15)
-texture = ExtResource("1_ri5qt")
-hframes = 16
-vframes = 3
+[node name="LgBlack" type="Sprite2D" parent="." unique_id=2066447645]
+position = Vector2(0, 9.536743e-07)
+scale = Vector2(0.18181819, 0.22727273)
+texture = ExtResource("2_3la36")

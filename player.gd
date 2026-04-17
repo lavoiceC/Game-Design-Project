@@ -13,6 +13,7 @@ var dmg_against_boss:int = 10
 signal player_death
 signal shoot
 signal life_lost
+signal movement
 
 
 
