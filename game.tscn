@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://b1np4oggbdius"]
+
+[ext_resource type="PackedScene" uid="uid://ckudr8chj1kgo" path="res://player.tscn" id="1_80nbo"]
+[ext_resource type="Script" uid="uid://dceffjs8rpmpn" path="res://game.gd" id="1_e2o6t"]
+[ext_resource type="Texture2D" uid="uid://biw6f41beuhjv" path="res://Assets/background.jpg" id="2_fc0e3"]
+[ext_resource type="PackedScene" uid="uid://bjf5naar08evt" path="res://chip.tscn" id="3_feb5d"]
+
+[node name="Game" type="Node2D" unique_id=475679184]
+script = ExtResource("1_e2o6t")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=1089367780]
+position = Vector2(586, 313.5)
+scale = Vector2(1.1542857, 1.0042857)
+texture = ExtResource("2_fc0e3")
+
+[node name="Player" parent="." unique_id=368318907 instance=ExtResource("1_80nbo")]
+
+[node name="Chip" parent="." unique_id=90414676 instance=ExtResource("3_feb5d")]
+position = Vector2(-9, 5)
