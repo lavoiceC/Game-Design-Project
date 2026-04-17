@@ -16,5 +16,5 @@ skew = -0.03141593
 shape = SubResource("CircleShape2D_hqtel")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=950772293]
-scale = Vector2(0.1, 0.1)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_i3pqv")

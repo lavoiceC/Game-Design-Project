@@ -3,6 +3,7 @@ signal death
 signal dealt_dmg
 signal breakup(size, extents, pos, vel, hit_vel, color_name)
 var skin_frame:int = 0
+var textures : {}
 var chip_size = {'Lg': 75, 'Med': 50,"Sm": 25}
 var chip_speed = 50
 var chip_bp = {'Lg': 'Med', 'Med': "Sm", "Sm": null} # break up pattern
