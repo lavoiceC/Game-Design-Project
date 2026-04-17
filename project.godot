@@ -11,7 +11,6 @@ config_version=5
 [application]
 
 config/name="Circuit Breaker"
-run/main_scene="uid://elst0xn32iil"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 config/windows_native_icon="uid://cctrdpi4mbtcv"
