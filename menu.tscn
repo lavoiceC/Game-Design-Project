@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://cjgmqjedkp6wf"]
+
+[ext_resource type="Script" uid="uid://fktlv6tl1sgr" path="res://menu.gd" id="1_ouk20"]
+[ext_resource type="Texture2D" uid="uid://c0inb5m1txi6d" path="res://Assets/menu.jpg" id="2_mae5d"]
+
+[node name="Menu" type="Node2D" unique_id=2119293713]
+script = ExtResource("1_ouk20")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1926258363]
+position = Vector2(603, 265.00006)
+scale = Vector2(0.7651042, 0.7120371)
+texture = ExtResource("2_mae5d")
+
+[node name="Start" type="Button" parent="." unique_id=505759060]
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="End" type="Button" parent="." unique_id=2053362453]
+offset_right = 8.0
+offset_bottom = 8.0
