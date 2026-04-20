@@ -6,13 +6,14 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_hqtel"]
 radius = 3.8284273
 
-[node name="Player" type="Area2D" unique_id=368318907]
+[node name="Player" type="CharacterBody2D" unique_id=521205397]
 rotation = 0.7853982
 script = ExtResource("1_onrkg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1305935437]
 position = Vector2(-1, 0)
-skew = -0.03141593
+scale = Vector2(1, 0.99999994)
+skew = -0.03141594
 shape = SubResource("CircleShape2D_hqtel")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=950772293]

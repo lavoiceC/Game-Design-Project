@@ -1,28 +1,48 @@
-## May have received some inspiriation via https://github.com/kidscancode/space_rocks/
-extends Area2D
-## how fast the ship rotates
-var rot_speed:float = 2.6
-## determines how much thrust the ship has
-var thrust: Vector2 = Vector2(500, 0)
-# Player Life(s)
-var lives:int = 3
-# Damage against normal enemies & Boss
-var laser_dmg:int = 25
-var dmg_against_boss:int = 10 
-# Signals to determine actions
-signal player_death
-signal shoot
-signal life_lost
-signal movement
+extends CharacterBody2D
 
+# Tweak these in the Godot Inspector to change how the ship handles
+@export var thrust_power: float = 150.0
+@export var rotation_speed: float = 2.0
+@export var friction: float = 0.5 
+@export var max_speed: float = 200.0
 
+var screen_size: Vector2
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass
+func _ready():
+	screen_size = get_viewport_rect().size
+
+func _physics_process(delta: float):
+	# 1. Handle Rotation
+	var rotation_dir = Input.get_axis("ui_left", "ui_right")
+	rotation += rotation_dir * rotation_speed * delta
+
+	# 2. Handle Thrust
+	if Input.is_action_pressed("ui_up"):
+		var forward_direction = Vector2.UP.rotated(rotation)
+		velocity += forward_direction * thrust_power * delta
 	
+	# 3. Apply Friction (Drag) and Speed Limits
+	velocity = velocity.move_toward(Vector2.ZERO, friction)
+	velocity = velocity.limit_length(max_speed)
+	if Input.is_action_pressed("ui_down"):
+		var forward_direction = Vector2.DOWN.rotated(rotation)
+		velocity += forward_direction * thrust_power * delta
+		velocity = velocity.move_toward(Vector2.ZERO, friction)
+		velocity = velocity.limit_length(max_speed)
+	# 4. Move the ship
+	move_and_slide()
 
+	# 5. Screen Wrapping
+	wrap_around_screen()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func wrap_around_screen():
+	# If the ship goes off one side of the screen, teleport it to the other
+	if position.x > screen_size.x:
+		position.x = 0
+	elif position.x < 0:
+		position.x = screen_size.x
+
+	if position.y > screen_size.y:
+		position.y = 0
+	elif position.y < 0:
+		position.y = screen_size.y
