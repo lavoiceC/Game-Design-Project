@@ -28,3 +28,14 @@ offset_bottom = 564.0
 theme_override_colors/font_color = Color(0, 0.6252806, 0.61760455, 1)
 theme_override_font_sizes/font_size = 40
 text = "Quit"
+
+[node name="Title" type="Label" parent="." unique_id=170418286]
+offset_left = 321.0
+offset_top = 160.0
+offset_right = 900.0
+offset_bottom = 270.0
+theme_override_font_sizes/font_size = 80
+text = "Circuit Breaker"
+
+[connection signal="button_down" from="Start" to="." method="_on_start_button_down"]
+[connection signal="button_down" from="End" to="." method="_on_end_button_down"]

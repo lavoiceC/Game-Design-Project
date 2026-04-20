@@ -1,6 +1,7 @@
 extends Node2D
 signal Start
 signal End
+
 # Called when the node enters the scene tree for the first time.
 
 func _ready() -> void:
@@ -12,9 +13,11 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func _on_start_pressed() -> void:
-	emit_signal('Start Game')
-	
-func _on_end_pressed() -> void:
-	emit_signal('Quit')
-	
+
+
+func _on_start_button_down() -> void:
+	emit_signal('Start')
+
+
+func _on_end_button_down() -> void:
+	emit_signal('End')
