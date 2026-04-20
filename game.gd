@@ -1,7 +1,4 @@
 ## May have received some inspiriation via https://github.com/kidscancode/space_rocks/
-## This file has been set to Autoload at the top of every scene,
-## therefore, by appending "game" to a variable listed, it may be called
-## in another file. (e.g. game.chip_size = = cs, enemy1 = cs['Lg'], etc )
 extends Node2D
 # Settings
 var game_over = false
