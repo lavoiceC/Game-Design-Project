@@ -2,20 +2,25 @@
 
 [ext_resource type="Script" uid="uid://cjvqm1qwpcrio" path="res://player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://cctrdpi4mbtcv" path="res://Assets/17_resultado.png" id="2_i3pqv"]
+[ext_resource type="AudioStream" uid="uid://hyllx1el3e44" path="res://lasersound.mp3" id="3_i3pqv"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_hqtel"]
-radius = 3.8284273
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
+size = Vector2(26.368073, 27.237055)
 
 [node name="Player" type="CharacterBody2D" unique_id=521205397]
 rotation = 0.7853982
 script = ExtResource("1_onrkg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1305935437]
-position = Vector2(-1, 0)
-scale = Vector2(1, 0.99999994)
+position = Vector2(-5.4800777, -4.0658646)
+scale = Vector2(1, 0.9999998)
 skew = -0.03141594
-shape = SubResource("CircleShape2D_hqtel")
+shape = SubResource("RectangleShape2D_onrkg")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=950772293]
+rotation = 0.9424778
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_i3pqv")
+
+[node name="ShootSound" type="AudioStreamPlayer" parent="." unique_id=80078716]
+stream = ExtResource("3_i3pqv")

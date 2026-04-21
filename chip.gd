@@ -24,7 +24,6 @@ var chip_bp = {'Lg': 'Med', 'Med': "Sm", "Sm": null} # break up pattern
 var current_size:String = 'Lg'
 var current_color = textures['LgBlack']
 
-@onready var sprite = $chip
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass

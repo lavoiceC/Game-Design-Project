@@ -1,20 +1,33 @@
 extends CharacterBody2D
-@export var thrust_power: float = 150.0
+@export var thrust_power: float = 175.0
 @export var rotation_speed: float = 2.0
 @export var friction: float = 0.5 
 @export var max_speed: float = 200.0
-
+@export var laser_scene: PackedScene
 var screen_size: Vector2
-
+var LASER_SCENE = preload("res://laser.tscn")
+@onready var shoot_sound = $ShootSound
 func _ready():
 	screen_size = get_viewport_rect().size
-
+	
+func shoot():
+	
+	var laser = LASER_SCENE.instantiate()
+	var nose_offset = Vector2(0, -35).rotated(rotation)
+	laser.global_position = global_position + nose_offset
+	laser.rotation = rotation + 0.15 #  additional offset because the laser would not fire from the front of ship.
+	get_parent().call_deferred("add_child",laser)
+	shoot_sound.play()
+	
 func _physics_process(delta: float):
-	# 1. Handle Rotation
+	# Handle Rotation
 	var rotation_dir = Input.get_axis("ui_left", "ui_right")
 	rotation += rotation_dir * rotation_speed * delta
-
-	# 2. Handle Thrust
+	
+	# Handle Shooting
+	if Input.is_action_just_pressed("shoot"):
+		shoot()
+	# Handle Thrust
 	if Input.is_action_pressed("ui_up"):
 		var forward_direction = Vector2.UP.rotated(rotation)
 		velocity += forward_direction * thrust_power * delta
@@ -44,7 +57,3 @@ func wrap_around_screen():
 		position.y = 0
 	elif position.y < 0:
 		position.y = screen_size.y
-
-func shot_fired():
-	if Input.is_action_just_pressed("")
-	

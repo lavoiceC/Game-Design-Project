@@ -14,7 +14,7 @@ func _process(delta: float) -> void:
 func _on_start_menu_start() -> void:
 	var new_game = game.instantiate()
 	add_child(new_game)
-	remove_child($Menu)
+	remove_child($'Start Menu')
 	$AudioStreamPlayer2D.stop()
 
 
