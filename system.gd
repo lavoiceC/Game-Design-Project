@@ -1,6 +1,5 @@
 extends Node2D
 @onready var game = preload('res://game.tscn')
-var stop_music:bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass
@@ -21,11 +20,5 @@ func _on_start_menu_start() -> void:
 
 
 
-
 func _on_start_menu_end() -> void:
 	get_tree().quit()
-
-
-func _on_audio_stream_player_2d_stop():
-	if stop_music == true:
-		$AudioStreamPlayer2D.stop()

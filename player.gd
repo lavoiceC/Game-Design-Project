@@ -1,6 +1,4 @@
 extends CharacterBody2D
-
-# Tweak these in the Godot Inspector to change how the ship handles
 @export var thrust_power: float = 150.0
 @export var rotation_speed: float = 2.0
 @export var friction: float = 0.5 
@@ -21,7 +19,7 @@ func _physics_process(delta: float):
 		var forward_direction = Vector2.UP.rotated(rotation)
 		velocity += forward_direction * thrust_power * delta
 	
-	# 3. Apply Friction (Drag) and Speed Limits
+	# Apply Friction (Drag) and Speed Limits
 	velocity = velocity.move_toward(Vector2.ZERO, friction)
 	velocity = velocity.limit_length(max_speed)
 	if Input.is_action_pressed("ui_down"):
@@ -29,10 +27,10 @@ func _physics_process(delta: float):
 		velocity += forward_direction * thrust_power * delta
 		velocity = velocity.move_toward(Vector2.ZERO, friction)
 		velocity = velocity.limit_length(max_speed)
-	# 4. Move the ship
+	# Move the ship
 	move_and_slide()
 
-	# 5. Screen Wrapping
+	# Screen Wrapping
 	wrap_around_screen()
 
 func wrap_around_screen():
@@ -46,3 +44,7 @@ func wrap_around_screen():
 		position.y = 0
 	elif position.y < 0:
 		position.y = screen_size.y
+
+func shot_fired():
+	if Input.is_action_just_pressed("")
+	
