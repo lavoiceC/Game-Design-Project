@@ -1,6 +1,6 @@
 extends CharacterBody2D
 @export var thrust_power: float = 175.0
-@export var rotation_speed: float = 2.0
+@export var rotation_speed: float = 4.0
 @export var friction: float = 0.5 
 @export var max_speed: float = 200.0
 @export var laser_scene: PackedScene

@@ -1,7 +1,5 @@
 extends Area2D
-signal death
 signal dealt_dmg
-signal breakup(size, extents, pos, vel, color_name)
 # Use pong game collision mechanic to set off breakup signal
 var skin_frame:int = 0
 var textures = { 
@@ -23,7 +21,7 @@ var chip_speed = 50
 var chip_bp = {'Lg': 'Med', 'Med': "Sm", "Sm": null} # break up pattern
 var current_size:String = 'Lg'
 var current_color = textures['LgBlack']
-
+var direction = Vector2()  
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass
