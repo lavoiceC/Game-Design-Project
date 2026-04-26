@@ -1,7 +1,9 @@
 extends Area2D
+class_name Chip
+var chip_scene = preload("res://chip.tscn")
 signal dealt_dmg
+var screen_size = Vector2()
 # Use pong game collision mechanic to set off breakup signal
-var skin_frame:int = 0
 var textures = { 
 	'LgBlack': "res://Assets/separated_sprites/LgBlack.png", 
 	'MedBlack': "res://Assets/separated_sprites/MedBlack.png",
@@ -15,17 +17,58 @@ var textures = {
  	'LgRed' : "res://Assets/separated_sprites/LgRed.png" ,
 	'MedRed' : "res://Assets/separated_sprites/MedRed.png" ,
 	'SmRed' : "res://Assets/separated_sprites/SmRed.png" }
-
 var chip_size = {'Lg': 75, 'Med': 50,"Sm": 25}
 var chip_speed = 50
 var chip_bp = {'Lg': 'Med', 'Med': "Sm", "Sm": null} # break up pattern
 var current_size:String = 'Lg'
-var current_color = textures['LgBlack']
-var direction = Vector2()  
+var base_color: String = 'Black'
+var direction = Vector2.RIGHT
+
+@onready var sprite = $Sprite
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	screen_size = get_viewport_rect().size
+	var texture_key = current_size + base_color # combines the color and size strings to create the key for the dict. (i.e. "Lg" and "Black" = "LgBlack"
+	if textures.has(texture_key):
+		sprite.texture = load(textures[texture_key])
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	position += direction * chip_speed * delta
+	wrap_around_screen()
+
+
+func start(pos: Vector2, size: String, color: String, dir: Vector2) -> void:
+	position = pos
+	current_size = size
+	base_color = color # Saving the color so it can be added to children
+	direction = dir.normalized()
+	if current_size == 'Med':
+		chip_speed = 75
+	elif current_size == "Sm":
+		chip_speed = 100 
+
+func explode() -> void:
+	var next_size = chip_bp[current_size]
+	if next_size != null:
+		for i in range(2):
+			var baby_chip = chip_scene.instantiate()
+			var split_angle = randf_range(-PI/4, PI/4)
+			var new_dir = direction.rotated((split_angle))
+			baby_chip.start(position, next_size, base_color, new_dir)
+			get_parent().call_deferred("add_child", baby_chip)
+	dealt_dmg.emit()
+	queue_free()
+func wrap_around_screen():
+	# If the ship goes off one side of the screen, teleport it to the other
+	if position.x > screen_size.x:
+		position.x = 0
+	elif position.x < 0:
+		position.x = screen_size.x
+
+	if position.y > screen_size.y:
+		position.y = 0
+	elif position.y < 0:
+		position.y = screen_size.y	
+			
+			

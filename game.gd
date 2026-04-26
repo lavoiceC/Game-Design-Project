@@ -6,7 +6,7 @@ var score = 0
 var level = 0
 var player_life = 3
 var screensize = Vector2()
-
+@onready var CHIP_SCENE = preload("res://chip.tscn")
 
 
 # Melissa (Boss) settings
@@ -18,6 +18,10 @@ var boss_speed = {'s1': 0, 's2': 20, 's3': 50, 's4': 75, 's5': 100}
 
 func _ready() -> void:
 	$Player.position = Vector2(576, 324)
+	var chip = CHIP_SCENE.instantiate()
+	get_parent().call_deferred("add_child",chip)
+	chip.position = Vector2.DOWN
+
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

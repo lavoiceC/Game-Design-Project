@@ -15,7 +15,7 @@ func shoot():
 	var laser = LASER_SCENE.instantiate()
 	var nose_offset = Vector2(0, -35).rotated(rotation)
 	laser.global_position = global_position + nose_offset
-	laser.rotation = rotation + 0.15 #  additional offset because the laser would not fire from the front of ship.
+	laser.rotation = rotation + 0.25 #  additional offset because the laser would not fire from the front of ship.
 	get_parent().call_deferred("add_child",laser)
 	shoot_sound.play()
 	
