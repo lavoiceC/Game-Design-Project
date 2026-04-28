@@ -7,13 +7,13 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
 size = Vector2(26.368073, 27.237055)
 
-[node name="Player" type="CharacterBody2D" unique_id=521205397]
+[node name="Player" type="CharacterBody2D" unique_id=1092364828]
 rotation = 0.7853982
 script = ExtResource("1_onrkg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1305935437]
 position = Vector2(-5.4800777, -4.0658646)
-scale = Vector2(1, 0.9999998)
+scale = Vector2(1, 0.99999976)
 skew = -0.03141594
 shape = SubResource("RectangleShape2D_onrkg")
 

@@ -1,7 +1,6 @@
 extends Area2D
 var screen_size: Vector2
 @export var speed:float = 800.0
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
@@ -19,6 +18,7 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	wrap_around_screen()
 	await get_tree().create_timer(0.14256).timeout
 	queue_free()
+
 func wrap_around_screen():
 	# to bring objects to the opposite side of the map 
 	if position.x > screen_size.x:
@@ -33,5 +33,6 @@ func wrap_around_screen():
 
 func _on_area_entered(area: Area2D) -> void:
 	if area is Chip:
-		area.explode()
+		if area.has_method("take_damage"):
+			area.take_damage()
 		queue_free()

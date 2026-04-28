@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dwonak3pfhp4q"]
+
+[node name="HUD" type="CanvasLayer" unique_id=1098712533]
+
+[node name="Score" type="Label" parent="." unique_id=177524108]
+anchors_preset = -1
+anchor_left = 0.0050000004
+anchor_right = 0.0050000004
+offset_left = -5.76
+offset_right = 51.239998
+offset_bottom = 37.0
+grow_horizontal = 0
+text = "Score"
+
+[node name="Lives" type="Label" parent="." unique_id=948275975]
+offset_left = 1112.0
+offset_top = 2.0
+offset_right = 1152.0
+offset_bottom = 25.0
+text = "0"

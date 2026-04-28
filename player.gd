@@ -1,4 +1,5 @@
 extends CharacterBody2D
+signal player_died
 @export var thrust_power: float = 175.0
 @export var rotation_speed: float = 4.0
 @export var friction: float = 0.5 
@@ -57,3 +58,21 @@ func wrap_around_screen():
 		position.y = 0
 	elif position.y < 0:
 		position.y = screen_size.y
+		
+func take_dmg():
+	hide()
+	set_deferred("collision_layer", 0)
+	set_deferred("collision_mask", 0)
+	set_physics_process(false)
+	player_died.emit()
+
+func respawn(start_pos: Vector2):
+	global_position = start_pos
+	velocity = Vector2.ZERO
+	rotation = 0 
+	show()
+	set_physics_process(true)
+	set_deferred("collision_layer", 1)
+	set_deferred("collision_mask", 1)	
+	await get_tree().create_timer(2.0).timeout
+	

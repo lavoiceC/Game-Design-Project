@@ -1,9 +1,10 @@
 extends Area2D
 class_name Chip
-var chip_scene = preload("res://chip.tscn")
 signal dealt_dmg
 var screen_size = Vector2()
-# Use pong game collision mechanic to set off breakup signal
+var active = false # solves "ghost collision" issue 
+var health: int = 0 
+var chip_scene = load("res://chip.tscn")
 var textures = { 
 	'LgBlack': "res://Assets/separated_sprites/LgBlack.png", 
 	'MedBlack': "res://Assets/separated_sprites/MedBlack.png",
@@ -18,11 +19,12 @@ var textures = {
 	'MedRed' : "res://Assets/separated_sprites/MedRed.png" ,
 	'SmRed' : "res://Assets/separated_sprites/SmRed.png" }
 var chip_size = {'Lg': 75, 'Med': 50,"Sm": 25}
-var chip_speed = 50
+var chip_speed = {'Lg': 100, 'Med': 125, 'Sm': 150}
+var speed:int 
 var chip_bp = {'Lg': 'Med', 'Med': "Sm", "Sm": null} # break up pattern
 var current_size:String = 'Lg'
 var base_color: String = 'Black'
-var direction = Vector2.RIGHT
+var direction = Vector2.RIGHT + Vector2.DOWN
 
 @onready var sprite = $Sprite
 # Called when the node enters the scene tree for the first time.
@@ -31,10 +33,12 @@ func _ready() -> void:
 	var texture_key = current_size + base_color # combines the color and size strings to create the key for the dict. (i.e. "Lg" and "Black" = "LgBlack"
 	if textures.has(texture_key):
 		sprite.texture = load(textures[texture_key])
+	await get_tree().create_timer(0.2).timeout
+	active = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	position += direction * chip_speed * delta
+	position += direction * speed * delta
 	wrap_around_screen()
 
 
@@ -43,11 +47,14 @@ func start(pos: Vector2, size: String, color: String, dir: Vector2) -> void:
 	current_size = size
 	base_color = color # Saving the color so it can be added to children
 	direction = dir.normalized()
-	if current_size == 'Med':
-		chip_speed = 75
-	elif current_size == "Sm":
-		chip_speed = 100 
+	health = chip_size[current_size]
+	speed = chip_speed[current_size]
 
+func take_damage():
+	health -= 25
+	if health <= 0:
+		explode()
+		
 func explode() -> void:
 	var next_size = chip_bp[current_size]
 	if next_size != null:
@@ -72,3 +79,12 @@ func wrap_around_screen():
 		position.y = screen_size.y	
 			
 			
+func _on_body_entered(body) -> void:
+	if not active:
+		return
+	if body.name == "Player":
+		if global_position.distance_to(body.global_position) < 80:
+			if body.has_method("take_dmg"):
+				body.take_dmg()
+		
+		

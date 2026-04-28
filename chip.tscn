@@ -7,6 +7,7 @@
 size = Vector2(20, 22)
 
 [node name="Chip" type="Area2D" unique_id=90414676]
+scale = Vector2(1.35, 1.35)
 script = ExtResource("2_ojlvc")
 metadata/_edit_group_ = true
 
@@ -17,3 +18,5 @@ shape = SubResource("RectangleShape2D_ojlvc")
 [node name="Sprite" type="Sprite2D" parent="." unique_id=2066447645]
 position = Vector2(0, 9.536743e-07)
 texture = ExtResource("2_3la36")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
