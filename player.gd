@@ -1,10 +1,13 @@
 extends CharacterBody2D
+class_name Player
 signal player_died
+@export var player_lives: int = 3
 @export var thrust_power: float = 175.0
 @export var rotation_speed: float = 4.0
 @export var friction: float = 0.5 
 @export var max_speed: float = 200.0
 @export var laser_scene: PackedScene
+var starting_pos:Vector2 = Vector2(576,324)
 var screen_size: Vector2
 var LASER_SCENE = preload("res://laser.tscn")
 @onready var shoot_sound = $ShootSound
@@ -64,15 +67,28 @@ func take_dmg():
 	set_deferred("collision_layer", 0)
 	set_deferred("collision_mask", 0)
 	set_physics_process(false)
-	player_died.emit()
-
+	player_lives -= 1
+	print(player_lives)
+	if player_lives <= 0:
+		player_died.emit()
+	else: 
+		respawn(starting_pos)
 func respawn(start_pos: Vector2):
 	global_position = start_pos
 	velocity = Vector2.ZERO
 	rotation = 0 
 	show()
+	await get_tree().create_timer(0.2).timeout
+	hide()
+	await get_tree().create_timer(0.2).timeout
+	show()
+	await get_tree().create_timer(0.2).timeout
+	hide()
+	await get_tree().create_timer(0.2).timeout
+	show()
 	set_physics_process(true)
+	await get_tree().create_timer(4.0).timeout
 	set_deferred("collision_layer", 1)
 	set_deferred("collision_mask", 1)	
-	await get_tree().create_timer(2.0).timeout
+	
 	
