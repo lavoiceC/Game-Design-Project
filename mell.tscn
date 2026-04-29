@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://c478xw3xv3j6l"]
 
 [ext_resource type="Texture2D" uid="uid://cr6peyeb6bxb2" path="res://Virus/Virus_0007_Package-----------------.png" id="1_5nuwd"]
-[ext_resource type="Script" uid="uid://cuu5qwbqvnwoa" path="res://virus.gd" id="1_ifgnm"]
+[ext_resource type="Script" uid="uid://cuu5qwbqvnwoa" path="res://mell.gd" id="1_ifgnm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ifgnm"]
 radius = 64.0
 
-[node name="Virus" type="Area2D" unique_id=49079569]
+[node name="Mell" type="Area2D" unique_id=49079569]
 script = ExtResource("1_ifgnm")
 metadata/_edit_group_ = true
 

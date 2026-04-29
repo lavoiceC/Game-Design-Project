@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://dwonak3pfhp4q"]
 
+[ext_resource type="Script" uid="uid://c1rnnpio7e1bc" path="res://hud.gd" id="1_37p78"]
+
 [node name="HUD" type="CanvasLayer" unique_id=1098712533]
+script = ExtResource("1_37p78")
 
 [node name="Score" type="Label" parent="." unique_id=177524108]
 anchors_preset = -1

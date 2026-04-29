@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://dceffjs8rpmpn" path="res://game.gd" id="1_e2o6t"]
 [ext_resource type="Texture2D" uid="uid://biw6f41beuhjv" path="res://Assets/background.jpg" id="2_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://b3xq2p7s2jm1e" path="res://laser.tscn" id="4_7jktm"]
-[ext_resource type="PackedScene" uid="uid://c478xw3xv3j6l" path="res://virus.tscn" id="6_ryrav"]
 
 [node name="Game" type="Node2D" unique_id=475679184]
 script = ExtResource("1_e2o6t")
@@ -19,9 +18,6 @@ metadata/_edit_lock_ = true
 position = Vector2(-11, 0)
 rotation = -0.11868239
 laser_scene = ExtResource("4_7jktm")
-
-[node name="Virus" parent="." unique_id=49079569 instance=ExtResource("6_ryrav")]
-scale = Vector2(0.125, 0.125)
 
 [node name="Life" type="CanvasLayer" parent="." unique_id=1439833752]
 layer = 0
