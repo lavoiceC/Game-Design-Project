@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://d0rc4nm23tx0y"]
+
+[ext_resource type="Script" uid="uid://cmuamtm6h1jyr" path="res://level_2.gd" id="1_n7ypv"]
+[ext_resource type="Texture2D" uid="uid://biw6f41beuhjv" path="res://Assets/background.jpg" id="2_0s5r2"]
+[ext_resource type="PackedScene" uid="uid://ckudr8chj1kgo" path="res://player.tscn" id="3_7j8ne"]
+[ext_resource type="PackedScene" uid="uid://b3xq2p7s2jm1e" path="res://laser.tscn" id="4_7dov7"]
+[ext_resource type="AudioStream" uid="uid://dw8el2jmpmv8a" path="res://level 1.mp3" id="5_ehv2h"]
+
+[node name="Level 2" type="Node2D" unique_id=475679184]
+script = ExtResource("1_n7ypv")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=1089367780]
+position = Vector2(563.99994, 334.00003)
+scale = Vector2(1.1542857, 1.0042857)
+texture = ExtResource("2_0s5r2")
+metadata/_edit_lock_ = true
+
+[node name="Player" parent="." unique_id=368318907 instance=ExtResource("3_7j8ne")]
+position = Vector2(-11, 0)
+rotation = -0.11868239
+laser_scene = ExtResource("4_7dov7")
+
+[node name="Life" type="CanvasLayer" parent="." unique_id=1439833752]
+layer = 0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1551928307]
+stream = ExtResource("5_ehv2h")
+autoplay = true
+
+[connection signal="player_died" from="Player" to="." method="_on_player_player_died"]
