@@ -10,6 +10,8 @@ signal player_died
 var starting_pos:Vector2 = Vector2(576,324)
 var screen_size: Vector2
 var LASER_SCENE = preload("res://laser.tscn")
+var virus_l : Array[TextureRect]
+var virus_h = 3
 @onready var shoot_sound = $ShootSound
 func _ready():
 	screen_size = get_viewport_rect().size
@@ -90,5 +92,7 @@ func respawn(start_pos: Vector2):
 	await get_tree().create_timer(4.0).timeout
 	set_deferred("collision_layer", 1)
 	set_deferred("collision_mask", 1)	
+func dmg_tak():
+	get_parent().dmg_tak()
 	
 	

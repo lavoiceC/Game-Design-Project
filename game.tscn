@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://biw6f41beuhjv" path="res://Assets/background.jpg" id="2_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://b3xq2p7s2jm1e" path="res://laser.tscn" id="4_7jktm"]
 [ext_resource type="AudioStream" uid="uid://dw8el2jmpmv8a" path="res://level 1.mp3" id="5_7jktm"]
+[ext_resource type="Texture2D" uid="uid://dd36j713hjw4h" path="res://Virus/Virus_0013_Package-----------------.png" id="6_ryrav"]
 
 [node name="Game" type="Node2D" unique_id=475679184]
 script = ExtResource("1_e2o6t")
@@ -26,5 +27,35 @@ layer = 0
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1551928307]
 stream = ExtResource("5_7jktm")
 autoplay = true
+
+[node name="Score" type="CanvasLayer" parent="." unique_id=478728871]
+editor_description = "Score: 0
+"
+
+[node name="Score_Board" type="Label" parent="Score" unique_id=1127352029]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Score:0"
+
+[node name="Health" type="CanvasLayer" parent="." unique_id=1937306282]
+offset = Vector2(850, 0)
+scale = Vector2(0.5, 0.5)
+transform = Transform2D(0.5, 0, 0, 0.5, 850, 0)
+
+[node name="Heart" type="HBoxContainer" parent="Health" unique_id=1110255709]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="L1" type="TextureRect" parent="Health/Heart" unique_id=1775049899]
+layout_mode = 2
+texture = ExtResource("6_ryrav")
+
+[node name="L2" type="TextureRect" parent="Health/Heart" unique_id=51472165]
+layout_mode = 2
+texture = ExtResource("6_ryrav")
+
+[node name="L3" type="TextureRect" parent="Health/Heart" unique_id=446757937]
+layout_mode = 2
+texture = ExtResource("6_ryrav")
 
 [connection signal="player_died" from="Player" to="." method="_on_player_player_died"]

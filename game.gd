@@ -8,15 +8,15 @@ var level = 0
 var player_life = 3
 var screensize = Vector2()
 @onready var CHIP_SCENE = preload("res://chip.tscn")
+@onready var heart := [$"Health/Heart/L1",$"Health/Heart/L2",$"Health/Heart/L3"]
 
 
 
-
-# Called when the node enters the scene tree for the first time.
+# Called when the node enters the scene tree fosr the first time.
 func _ready() -> void:
 	$Player.position = Vector2(576, 324)
 	screensize = get_viewport_rect().size
-	
+	update_hearts()
 	# Start the first wave
 	call_deferred("start_new_level")
 
@@ -56,8 +56,12 @@ func spawn_chip():
 
 func _on_chip_destroyed():
 	score += 10
+	update_score()
 	# Check if we need to progress to the next level next frame
 	call_deferred("check_level_completion")
+	if score >= 100:
+		get_tree().change_scene_to_file("res://level_2.tscn")
+		return
 
 func check_level_completion():
 	var chips_remaining = 0
@@ -78,3 +82,16 @@ func _on_player_died():
 	await get_tree().create_timer(1.5).timeout
 	if is_instance_valid($Player):
 		$Player.respawn(Vector2(576, 324))
+
+func update_score():
+	$Score/Score_Board.text = "Score:" + str(score)
+	
+func update_hearts():
+	print(heart)
+	for i in range(heart.size()):
+		heart[i].visible = i < player_life
+func dmg_tak():
+	player_life -= 1
+	update_hearts() 
+	if  player_life <= 0:
+		_on_player_died()

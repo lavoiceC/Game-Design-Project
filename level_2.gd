@@ -3,7 +3,7 @@ extends Node2D
 # Settings
 var game_over = false
 var score = 0
-var level = 0
+var level = 2
 var player_life = 3
 var screensize = Vector2()
 @onready var CHIP_SCENE = preload("res://chip.tscn")
@@ -34,6 +34,7 @@ func start_new_level():
 		spawn_chip()
 		spawn_chip()
 		spawn_chip()
+		
 
 func spawn_chip():
 	var chip = CHIP_SCENE.instantiate()
@@ -83,3 +84,5 @@ func _on_player_died():
 		await get_tree().create_timer(1.5).timeout
 		if is_instance_valid($Player):
 			$Player.respawn(Vector2(576, 324))
+func update_score():
+	$Score/Score_Board.text = "Score:" + str(score)

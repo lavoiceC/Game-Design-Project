@@ -27,4 +27,13 @@ layer = 0
 stream = ExtResource("5_ehv2h")
 autoplay = true
 
+[node name="Score" type="CanvasLayer" parent="." unique_id=542835387]
+editor_description = "Score: 0
+"
+
+[node name="Score_Board" type="Label" parent="Score" unique_id=1508926226]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Score:0"
+
 [connection signal="player_died" from="Player" to="." method="_on_player_player_died"]
