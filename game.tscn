@@ -4,6 +4,8 @@
 [ext_resource type="Script" uid="uid://dceffjs8rpmpn" path="res://game.gd" id="1_e2o6t"]
 [ext_resource type="Texture2D" uid="uid://biw6f41beuhjv" path="res://Assets/background.jpg" id="2_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://b3xq2p7s2jm1e" path="res://laser.tscn" id="4_7jktm"]
+[ext_resource type="AudioStream" uid="uid://dw8el2jmpmv8a" path="res://level 1.mp3" id="5_ryrav"]
+[ext_resource type="Script" uid="uid://snbc0roes6yk" path="res://level_1.gd" id="6_eow3j"]
 
 [node name="Game" type="Node2D" unique_id=475679184]
 script = ExtResource("1_e2o6t")
@@ -21,5 +23,10 @@ laser_scene = ExtResource("4_7jktm")
 
 [node name="Life" type="CanvasLayer" parent="." unique_id=1439833752]
 layer = 0
+
+[node name="Level1Music" type="AudioStreamPlayer2D" parent="." unique_id=2093432066]
+stream = ExtResource("5_ryrav")
+autoplay = true
+script = ExtResource("6_eow3j")
 
 [connection signal="player_died" from="Player" to="." method="_on_player_player_died"]

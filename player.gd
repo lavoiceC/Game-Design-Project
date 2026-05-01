@@ -1,7 +1,7 @@
 extends CharacterBody2D
 class_name Player
 signal player_died
-@export var player_lives: int = 3
+@export var health = {"health1": 1, "health2": 1, "health3":1 }
 @export var thrust_power: float = 175.0
 @export var rotation_speed: float = 4.0
 @export var friction: float = 0.5 
@@ -62,17 +62,35 @@ func wrap_around_screen():
 	elif position.y < 0:
 		position.y = screen_size.y
 		
-func take_dmg():
-	hide()
-	set_deferred("collision_layer", 0)
-	set_deferred("collision_mask", 0)
-	set_physics_process(false)
-	player_lives -= 1
-	print(player_lives)
-	if player_lives <= 0:
-		player_died.emit()
-	else: 
+func take_dmg_h1():
+		hide()
+		set_deferred("collision_layer", 0)
+		set_deferred("collision_mask", 0)
+		set_physics_process(false)
+		health["health1"] = 0
 		respawn(starting_pos)
+func take_dmg_h2():
+		hide()
+		set_deferred("collision_layer", 0)
+		set_deferred("collision_mask", 0)
+		set_physics_process(false)
+		health["health2"] = 0
+		respawn(starting_pos)
+func take_dmg_h3():
+		hide()
+		set_deferred("collision_layer", 0)
+		set_deferred("collision_mask", 0)
+		set_physics_process(false)
+		health["health3"] = 0
+		respawn(starting_pos)
+func death():
+	if health not 1:
+		
+		
+		
+		
+			
+	
 func respawn(start_pos: Vector2):
 	global_position = start_pos
 	velocity = Vector2.ZERO
