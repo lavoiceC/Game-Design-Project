@@ -25,7 +25,8 @@ var chip_bp = {'Lg': 'Med', 'Med': "Sm", "Sm": null} # break up pattern
 var current_size:String = 'Lg'
 var base_color: String = 'Black'
 var direction = Vector2.RIGHT + Vector2.DOWN
-
+var score = 0 
+var level = 1
 @onready var sprite = $Sprite
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -35,6 +36,8 @@ func _ready() -> void:
 		sprite.texture = load(textures[texture_key])
 	await get_tree().create_timer(0.2).timeout
 	active = true
+	
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -49,6 +52,7 @@ func start(pos: Vector2, size: String, color: String, dir: Vector2) -> void:
 	direction = dir.normalized()
 	health = chip_size[current_size]
 	speed = chip_speed[current_size]
+	
 
 func take_damage():
 	health -= 25
@@ -60,12 +64,16 @@ func explode() -> void:
 	if next_size != null:
 		for i in range(2):
 			var baby_chip = chip_scene.instantiate()
+			get_parent().call_deferred("add_child", baby_chip)
+			baby_chip.dealt_dmg.connect(get_parent()._on_chip_destroyed)
+
 			var split_angle = randf_range(-PI/4, PI/4)
 			var new_dir = direction.rotated((split_angle))
 			baby_chip.start(position, next_size, base_color, new_dir)
 			get_parent().call_deferred("add_child", baby_chip)
 	dealt_dmg.emit()
 	queue_free()
+	
 func wrap_around_screen():
 	# If the ship goes off one side of the screen, teleport it to the other
 	if position.x > screen_size.x:
